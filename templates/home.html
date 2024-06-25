@@ -1,0 +1,58 @@
+{% include 'home_wilogin.html' %} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Plot</title>
+</head>
+<style>
+    body {
+        background-image: url("https://th.bing.com/th/id/OIP.psRDWv4IOFIrI39JewkjDAHaGf?rs=1&pid=ImgDetMain");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: bottom;
+        background-attachment: fixed;
+        margin: 0; /* Remove default margin */
+        padding: 0; /* Remove default padding */
+        height: 100vh;
+    }
+    
+    .sales-container {
+        text-align: center;
+        margin: 0 auto; /* This will horizontally center the div */
+        width: 60%; /* Adjust this width as needed */
+    }
+</style>    
+<body action="{% url 'home' %}" >
+    <br>
+    <h2 style="text-align: center;">Analysis</h2>
+
+    <!-- Line Plot -->
+    <div>
+        <h4>Line Plot</h4>
+        <img src="data:image/png;base64,{{ line_plot }}" alt="Line Plot">
+    </div>
+
+    <!-- Bar Plot -->
+    <div>
+        <h4>Bar Plot</h4>
+        <img src="data:image/png;base64,{{ bar_plot }}" alt="Bar Plot">
+    </div>
+    <div class="sales-container">
+        <br>
+    <h3>Total Sales</h3>
+    <h4>Past Month:</h4>
+    <p>Total Revenue: {{ revenue_past_month }}</p>
+    <p>Total Items Sold: {{ items_sold_past_month }}</p>
+    <h4>Past Week:</h4>
+    <p>Total Revenue: {{ revenue_past_week }}</p>
+    <p>Total Items Sold: {{ items_sold_past_week }}</p>
+    </div>
+     <!--Pie Chart 
+    <div>
+        <h2>Pie Chart</h2>
+        <img src="data:image/png;base64,{{ pie_chart }}" alt="Pie Chart">
+    </div>-->
+</body>
+</html>

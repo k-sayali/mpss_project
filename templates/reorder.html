@@ -1,0 +1,78 @@
+{% include 'home_wilogin.html' %} 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <style>
+        
+
+        .btn-container {
+            text-align: center;
+          }
+          body {
+            background-image: url("https://th.bing.com/th/id/OIP.psRDWv4IOFIrI39JewkjDAHaGf?rs=1&pid=ImgDetMain");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: bottom;
+            background-attachment: fixed;
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+            height: 100vh;
+        }
+          
+    </style>
+</head>
+
+<body>
+    <!--<div class="navbar mb-4">
+        <h1><a class="home" href="/">Spencer</a></h1>
+        <div>
+            <a href="{% url 'add' %}">Add Item</a>
+            <a href="{% url 'home' %}">Home</a>
+        </div>
+    </div>-->
+    <br>
+    <h3 style="text-align: center;">Items to be Ordered</h3>
+    <br>
+    <table class="table table-striped"
+        style="margin-top:20px !important; width:70%; margin:auto; border:2px solid black; border-radius:20px !important">
+        <thead style="border-radius: 20px;">
+            <tr>
+                <th scope="col">Item Type</th>
+                <th scope="col">Vehicle Type</th>
+                <th scope="col">Manufacturer name</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price</th>
+                <th scope="col">Address</th>
+                <!-- <th scope="col">Action</th> -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for insufficient in insufficients %}
+                <tr>
+                    <th scope="row">{{insufficient.i_type}}</th>
+                    <td>{{insufficient.v_type}}</td>
+                    <td>{{insufficient.manufacturer}}</td>
+                    <td>{{insufficient.quantity}}</td>
+                    <td>{{insufficient.price}}</td>
+                    <td>{{insufficient.address}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <form action="{% url 'refill' %}" method="POST" >
+    {% csrf_token %}
+    <div class="btn-container">
+    <button type="submit" class="btn btn-primary" style="width: 10%;">Reorder</button>
+    </div>
+    </form>
+</body>
+
+</html>
